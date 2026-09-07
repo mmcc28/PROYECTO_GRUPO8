@@ -100,6 +100,7 @@ public class ProyectoPrograG8 {
                 validado = true;
                 System.out.printf("BIENVENIDO: %s\n", nombre[i]);
                 
+                
            break; // Break para cerrar el ciclo
            
             }// fin if
@@ -114,7 +115,7 @@ public class ProyectoPrograG8 {
 
     // 2nda FUNCION MENU PACIENTE
         
-    // 3ra FUNCION MENU MEDICOA
+    // 3ra FUNCION MENU MEDICO
        
        public static void SubmenuMedico (Scanner sc) {
         
