@@ -15,6 +15,7 @@ public class ProyectoPrograG8 {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         // TODO code application logic here
 
@@ -37,12 +38,12 @@ public class ProyectoPrograG8 {
         // STRING BASE DE DATOS PRECARGADA INFORMACION DE MEDICOS 
         String[] nombreMedico = {"Dr. Alejandro Martínez", "Dra. Laura Hernández", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Pérez"};
         String[] codigoMedico = {"M001", "M002", "M003", "M004", "M005"};
-        String[] passwordMedico = {"pass1", "pass2", "pass3", "pass4", "pass5"};
+        String[] passwordMedico = {"Pass1", "Pass2", "Pass3", "Pass4", "Pass5"};
         
         // STRING BASE DE DATOS PRECARGADA INFORMACION DE PACIENTES
         String[] nombrePaciente = {"María López", "Carlos Díaz", "Sofía Ramos", "Jorge Molina", "Lucía Torres"};
         String[] codigoPaciente= {"P006","P007","P008","P009","P0010"};
-        String[] passwordPaciente = {"pass6", "pass7", "pass8","pass9", "pass10" };
+        String[] passwordPaciente = {"Pass6", "Pass7", "Pass8","Pass9", "Pass10" };
 
         //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
         
@@ -114,7 +115,7 @@ public class ProyectoPrograG8 {
 
     }// FIN FUNCION IngresarUsuario
 
-    // FUNCION MENU PACIENTE
+    // FUNCION SUBMENU PACIENTE
         
     public static void SubmenuPaciente(Scanner sc) {
         
@@ -209,6 +210,7 @@ public class ProyectoPrograG8 {
         } while (submenuMedico != 5);
 
     }// FiN FUNCION submenuMedico
+       
         
         
     
