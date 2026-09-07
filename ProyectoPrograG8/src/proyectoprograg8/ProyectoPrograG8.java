@@ -50,6 +50,8 @@ public class ProyectoPrograG8 {
             case 1:
                 ;
                 IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
+                
+                SubmenuPaciente(sc);
 
                 break;
 
@@ -79,7 +81,7 @@ public class ProyectoPrograG8 {
     }// FIN MAIN
     
     
-    // 1ra FUNCION INGRESAR USUARIO Y CONTRASENA PARA MEDICO Y PACIENTE
+    // FUNCION INGRESAR USUARIO Y CONTRASENA PARA MEDICO Y PACIENTE
         public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) { //código para verificar, password para verificar, nombre para mostrar
 
         String usuario = "JOHN DOE";
@@ -93,9 +95,9 @@ public class ProyectoPrograG8 {
 
         boolean validado = false;
 
-        //1er ciclo for: verificar el usuario y contrasena que escribio para mostrar el Dr correspondiente
+        //ciclo for: verificar el usuario y contrasena que escribio para mostrar el Dr correspondiente
         for (int i = 0; i < codigo.length; i++) { // recorre todo el ciclo buscando los datos del medico
-            //1er ciclo if operadores logicos && 
+            //ciclo if operadores logicos && 
             if (codigo[i].equals(usuario) && password[i].equals(contrasena)) { // equals para comparar strings
                 validado = true;
                 System.out.printf("BIENVENIDO: %s\n", nombre[i]);
@@ -105,17 +107,62 @@ public class ProyectoPrograG8 {
            
             }// fin if
         }// fin for
-            
-        // 2ndo ciclo if 
+          
         if (validado == false) {
             System.out.println("USUARIO O CONTRASENA INCORRECTOS");
         }// fin if
 
     }// FIN FUNCION IngresarUsuario
 
-    // 2nda FUNCION MENU PACIENTE
+    // FUNCION MENU PACIENTE
         
-    // 3ra FUNCION MENU MEDICO
+    public static void SubmenuPaciente(Scanner sc) {
+        
+         int submenuPaciente =0; 
+        System.out.println("--------------------------------");
+        System.out.println("         MENU PACIENTE          ");
+        System.out.println("--------------------------------");
+        System.out.println("SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
+       
+        do {
+
+            System.out.println("1. Menu de Citas ");
+            System.out.println("2. Historial Medico");
+            System.out.println("3. Registrar Informacion");
+            System.out.println("4. Notificaciones");
+            System.out.println("5. Consulta Medica por llamada");
+
+            submenuPaciente = sc.nextInt();
+
+            // Switch #3 submenuMedico   
+            switch (submenuPaciente) {
+                case 1:  
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+
+                default:
+        System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    break;
+            }// FIN SWITCH  
+        } while (submenuPaciente != 5);
+
+    }// FiN FUNCION Submenu Paciente
+             
+    // FUNCION SUBMENU MEDICO
        
        public static void SubmenuMedico (Scanner sc) {
         
@@ -137,7 +184,7 @@ public class ProyectoPrograG8 {
 
             // Switch #3 submenuMedico   
             switch (submenuMedico) {
-                case 1:
+                case 1:  
 
                     break;
 
@@ -158,10 +205,10 @@ public class ProyectoPrograG8 {
                 default:
         System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
                     break;
-            }// FIN SWITCH  #2
+            }// FIN SWITCH  
         } while (submenuMedico != 5);
 
-    }// FUN FUNCION MenuMedico
+    }// FiN FUNCION submenuMedico
         
         
     
