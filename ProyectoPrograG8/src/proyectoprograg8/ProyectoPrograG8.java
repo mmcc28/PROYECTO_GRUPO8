@@ -19,7 +19,7 @@ public class ProyectoPrograG8 {
         // TODO code application logic here
 
         Scanner sc = new Scanner(System.in);
-        int opcion = 0;
+        int menuPrincipal = 0;
 
         
         //MENSAJE BIENVENIDA 
@@ -30,7 +30,7 @@ public class ProyectoPrograG8 {
         System.out.println("1. Ingresar como Paciente");
         System.out.println("2. Ingresar como Médico");
         System.out.println("3. Salir");
-        opcion = sc.nextInt();
+        menuPrincipal = sc.nextInt();
         
         sc.nextLine();//LIMPIEZA BUFFER
 
@@ -44,9 +44,9 @@ public class ProyectoPrograG8 {
         String[] codigoPaciente= {"P006","P007","P008","P009","P0010"};
         String[] passwordPaciente = {"pass6", "pass7", "pass8","pass9", "pass10" };
 
-        //SWITCH MENU PRINCPIAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
+        //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
         
-        switch (opcion) {
+        switch (menuPrincipal) {
             case 1:
                 ;
                 IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
@@ -56,8 +56,10 @@ public class ProyectoPrograG8 {
             case 2:
                             
                 IngresarUsuario(codigoMedico, passwordMedico, nombreMedico, sc);
-                        
-
+                
+                SubmenuMedico(sc);
+               
+                
                 break;
 
             case 3:
@@ -77,7 +79,7 @@ public class ProyectoPrograG8 {
     }// FIN MAIN
     
     
-    //1ra FUNCION INGRESAR USUARIO Y CONTRASENA PARA MEDICO Y PACIENTE
+    // 1ra FUNCION INGRESAR USUARIO Y CONTRASENA PARA MEDICO Y PACIENTE
         public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) { //código para verificar, password para verificar, nombre para mostrar
 
         String usuario = "JOHN DOE";
@@ -110,7 +112,57 @@ public class ProyectoPrograG8 {
 
     }// FIN FUNCION IngresarUsuario
 
+    // 2nda FUNCION MENU PACIENTE
+        
+    // 3ra FUNCION MENU MEDICOA
+       
+       public static void SubmenuMedico (Scanner sc) {
+        
+        int submenuMedico =0; 
+        System.out.println("--------------------------------");
+        System.out.println("         MENU MEDICO            ");
+        System.out.println("--------------------------------");
+        System.out.println("SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
+       
+        do {
 
+            System.out.println("1. Ver citas asignadas");
+            System.out.println("2. Consultar historial medico");
+            System.out.println("3. Registrar diagnostico");
+            System.out.println("4. Gestionar incapacidad");
+            System.out.println("5. Atender consulta");
+
+            submenuMedico = sc.nextInt();
+
+            // Switch #3 submenuMedico   
+            switch (submenuMedico) {
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+
+                default:
+        System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    break;
+            }// FIN SWITCH  #2
+        } while (submenuMedico != 5);
+
+    }// FUN FUNCION MenuMedico
+        
+        
     
     
     
