@@ -44,7 +44,8 @@ public class ProyectoPrograG8 {
         String[] nombrePaciente = {"María López", "Carlos Díaz", "Sofía Ramos", "Jorge Molina", "Lucía Torres"};
         String[] codigoPaciente= {"P006","P007","P008","P009","P0010"};
         String[] passwordPaciente = {"Pass6", "Pass7", "Pass8","Pass9", "Pass10" };
-
+        
+        String[] especialidadMedico={"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
         //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
         
         switch (menuPrincipal) {
@@ -138,7 +139,7 @@ public class ProyectoPrograG8 {
             // Switch #3 submenuMedico   
             switch (submenuPaciente) {
                 case 1:  
-
+                       
                     break;
 
                 case 2:
