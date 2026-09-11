@@ -99,7 +99,7 @@ public class ProyectoPrograG8 {
         //ciclo for: verificar el usuario y contrasena que escribio para mostrar el Dr correspondiente
         for (int i = 0; i < codigo.length; i++) { // recorre todo el ciclo buscando los datos del medico
             //ciclo if operadores logicos && 
-            if (codigo[i].equals(usuario) && password[i].equals(contrasena)) { // equals para comparar strings
+            if (codigo[i].equalsIgnoreCase(usuario) && password[i].equalsIgnoreCase(contrasena)) { // equals para comparar strings
                 validado = true;
                 System.out.printf("BIENVENIDO: %s\n", nombre[i]);
                 
