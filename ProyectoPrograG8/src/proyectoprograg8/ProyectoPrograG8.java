@@ -45,6 +45,7 @@ public class ProyectoPrograG8 {
         String[] codigoPaciente= {"P006","P007","P008","P009","P0010"};
         String[] passwordPaciente = {"Pass6", "Pass7", "Pass8","Pass9", "Pass10" };
         
+        // STRING BASE DE DATOS PRECARGADA INFORMACION ESPECIALIDAD DE MEDICOS (SEGUN ORDEN DE NOMBRES DE MEDICOS)
         String[] especialidadMedico={"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
         //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
         
