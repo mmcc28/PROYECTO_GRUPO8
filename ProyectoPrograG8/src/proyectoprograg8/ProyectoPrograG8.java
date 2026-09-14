@@ -26,13 +26,23 @@ public class ProyectoPrograG8 {
     static String[] codigoPaciente = {"P006", "P007", "P008", "P009", "P0010"};
     static String[] passwordPaciente = {"Pass6", "Pass7", "Pass8", "Pass9", "Pass10"};
 
-    // StRING BASE DE DATOS CITAS  - arreglos Bidimensional 
+    // StRING BASE DE DATOS PRECARGADA CITAS  - arreglos Bidimensional 
     static String[][] citas = {
-        {"P006", "M001", "05/09/2026", "Control general", "Programada"}, 
-        {"P006", "M002", "12/09/2026", "Dermatologia", "Programada"}};
+        {"P006", "María López", "M001", "05/09/2026", "Control general", "Programada"},
+        {"P007", "Carlos Díaz", "M002", "12/09/2026", "Dermatologia", "Programada"},
+        {"P008", "Sofía Ramos", "M003", "15/09/2026", "Dolor lumbar", "Programada"},
+        {"P009", "Jorge Molina", "M004", "18/09/2026", "Revision cardiaca", "Programada"},
+        {"P0010", "Lucía Torres", "M005", "20/09/2026", "Consulta neurologia", "Programada"}
+    };
 
     //STRING BASE DE DATOS HISTORIAL MEDICO- arreglo bidimensional
-    static String[][] historial = {{"P006", "10/06/2026", "Hemograma", "Valores normales"}, {"P006", "22/07/2026", "Radiografia", "Sin anomalias"}};
+    static String[][] historialMedico = {
+        {"P006", "María López", "10/06/2026", "Hemograma", "Valores normales"},
+        {"P007", "Carlos Díaz", "22/07/2026", "Radiografia", "Sin anomalias"},
+        {"P008", "Sofía Ramos", "15/07/2026", "Radiografia lumbar", "Evaluacion requerida"},
+        {"P009", "Jorge Molina", "20/07/2026", "Electrocardiograma", "Ritmo normal"},
+        {"P0010", "Lucía Torres", "25/07/2026", "Resonancia", "Sin anomalias"}
+    };
 
     public static void main(String[] args) {
         // TODO code application logic here
@@ -41,7 +51,8 @@ public class ProyectoPrograG8 {
         int menuPrincipal = 0;
 
         
-        //MENSAJE BIENVENIDA 
+        do {
+             //MENSAJE BIENVENIDA 
         System.out.println("--------------------------------");
         System.out.println("BIENVENVIDOS A CLINICAS MEDICAS ");
         System.out.println("--------------------------------");
@@ -67,8 +78,7 @@ public class ProyectoPrograG8 {
             case 2:
                             
                 IngresarUsuario(codigoMedico, passwordMedico, nombreMedico, sc);
-                
-                SubmenuMedico(sc);
+
                
                 
                 break;
@@ -82,6 +92,8 @@ public class ProyectoPrograG8 {
                 System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
                 break;
         }// FIN SWITCH MENU PRINCIPAL
+        
+        } while (menuPrincipal !=3);
 
         
               
@@ -107,10 +119,10 @@ public class ProyectoPrograG8 {
         //ciclo for: verificar el usuario y contrasena que escribio para mostrar el Dr correspondiente
         for (int i = 0; i < codigo.length; i++) { // recorre todo el ciclo buscando los datos del medico
             //ciclo if operadores logicos && 
-            if (codigo[i].equalsIgnoreCase(usuario) && password[i].equalsIgnoreCase(contrasena)) { // equals para comparar strings
+            if (codigo[i].equals(usuario) && password[i].equals(contrasena)) { // equals para comparar strings
                 validado = true;
                 System.out.printf("BIENVENIDO: %s\n", nombre[i]);
-                
+                SubmenuMedico(sc, usuario);
                 
            break; // Break para cerrar el ciclo
            
@@ -173,7 +185,7 @@ public class ProyectoPrograG8 {
              
     // FUNCION SUBMENU MEDICO
        
-       public static void SubmenuMedico (Scanner sc) {
+       public static void SubmenuMedico (Scanner sc, String codigoMedico) {
         
         int submenuMedico =0; 
         System.out.println("--------------------------------");
@@ -195,10 +207,11 @@ public class ProyectoPrograG8 {
             // Switch #3 submenuMedico   
             switch (submenuMedico) {
                 case 1:  
-                    MostrarCitasAsignadasMedico(citas);
+                    MostrarCitasAsignadasMedico(citas, codigoMedico);
                     break;
 
                 case 2:
+                    MostrarHistorialMedico(historialMedico, sc);
 
                     break;
 
@@ -208,6 +221,10 @@ public class ProyectoPrograG8 {
 
                 case 4:
                     break;
+                    
+                case 6:
+                    System.out.println("VOLVIENDO AL MENU PRINCIPAL...");
+                    break;
 
                 case 5:
                     break;
@@ -216,36 +233,63 @@ public class ProyectoPrograG8 {
         System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
                     break;
             }// FIN SWITCH  
-        } while (submenuMedico != 5);
+        } while (submenuMedico != 6);
 
     }// FiN FUNCION submenuMedico
        
        
        
-     public static void MostrarCitasAsignadasMedico(String[][] arreglo) {
+     public static void MostrarCitasAsignadasMedico(String[][] arregloCitas, String codigoMedico) {
 
         System.out.println("--------------------");
         System.out.println("   CITAS ASIGNADAS  ");
         System.out.println("--------------------");
 
-        for (int i = 0; i < arreglo.length; i++) {
-            System.out.printf("Codigo: %s\n", arreglo[i][0]);
-            System.out.printf("Paciente: %s\n", arreglo[i][1]);
-            System.out.printf("Medico: %s\n", arreglo[i][2]);
-            System.out.printf("Fecha: %s\n", arreglo[i][3]);
-            System.out.printf("Motivo: %s\n", arreglo[i][4]);
-            System.out.printf("Estado: %s\n", arreglo[i][5]);
-            System.out.println("----------------");
-            
-          
+        for (int i = 0; i < arregloCitas.length; i++) {
+            if (arregloCitas[i][2].equals(codigoMedico)) {  
+                // printf de cada columna
+                System.out.printf("codigo Paciente: %s\n", arregloCitas[i][0]);
+                System.out.printf("Nombre Paciente: %s\n",arregloCitas [i][1]);
+                System.out.printf("Medico: %s\n", arregloCitas[i][2]);
+                System.out.printf("Fecha: %s\n", arregloCitas[i][3]);
+                System.out.printf("Motivo: %s\n", arregloCitas[i][4]);
+                System.out.printf("Estado: %s\n", arregloCitas[i][5]);
+                System.out.println("----------------");
 
-        }// Fin For 
-           
-       }// FIN FUNCION MOSTRAR CITAS ASIGNADA
+            }// Fin if
+        }// Fin for
+
+    }// FIN FUNCION MOSTRAR CITAS ASIGNADA MEDICA
+
        
-       
-        
-        
+       public static void MostrarHistorialMedico(String[][] arregloHistorial, Scanner sc) {
+
+        String codigoPaciente = "John Doe";
+
+        System.out.println("--------------------");
+        System.out.println("  HISTORIAL MEDICO  ");
+        System.out.println("--------------------");
+
+        System.out.println("INGRESE EL CODIGO DEL PACIENTE");
+        codigoPaciente = sc.next();
+
+        for (int i = 0; i < arregloHistorial.length; i++) {
+
+            if (arregloHistorial[i][0].equals(codigoPaciente)) {
+
+                System.out.printf("codigo Paciente: %s\n", arregloHistorial[i][0]);
+                System.out.printf("Nombre Paciente: %s\n", arregloHistorial[i][1]);
+                System.out.printf("Fecha: %s\n", arregloHistorial[i][2]);
+                System.out.printf("Estudio: %s\n", arregloHistorial[i][3]);
+                System.out.printf("Resultados: %s\n", arregloHistorial[i][4]);
+                System.out.println("----------------");
+
+            }// Fin if
+        }// Fin For
+
+    }// FIN FUNCION MOSTRAR HISTORIAL MEDICO
+
+
     
     
     
