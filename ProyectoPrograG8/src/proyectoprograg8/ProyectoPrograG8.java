@@ -330,7 +330,7 @@ public class ProyectoPrograG8 {
                      
                      }// Fin For MenuCitas
                  System.out.println("Seleccione Especialidad:");
-               int seleccion=sc.hasNextInt();
+               int seleccion=sc.nextInt();
              
          }// Fin Switch MenuCitas
          
