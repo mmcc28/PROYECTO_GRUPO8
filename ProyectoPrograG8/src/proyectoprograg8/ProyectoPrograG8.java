@@ -16,6 +16,24 @@ public class ProyectoPrograG8 {
      * @param args the command line arguments
      */
     
+    // STRING BASE DE DATOS PRECARGADA INFORMACION DE MEDICOS- arreglos unidimensionales
+    static String[] nombreMedico = {"Dr. Alejandro Martínez", "Dra. Laura Hernández", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Pérez"};
+    static String[] codigoMedico = {"M001", "M002", "M003", "M004", "M005"};
+    static String[] passwordMedico = {"Pass1", "Pass2", "Pass3", "Pass4", "Pass5"};
+
+    // STRING BASE DE DATOS PRECARGADA INFORMACION DE PACIENTES- arreglos unidimensionales
+    static  String[] nombrePaciente = {"María López", "Carlos Díaz", "Sofía Ramos", "Jorge Molina", "Lucía Torres"};
+    static String[] codigoPaciente = {"P006", "P007", "P008", "P009", "P0010"};
+    static String[] passwordPaciente = {"Pass6", "Pass7", "Pass8", "Pass9", "Pass10"};
+
+    // StRING BASE DE DATOS CITAS  - arreglos Bidimensional 
+    static String[][] citas = {
+        {"P006", "M001", "05/09/2026", "Control general", "Programada"}, 
+        {"P006", "M002", "12/09/2026", "Dermatologia", "Programada"}};
+
+    //STRING BASE DE DATOS HISTORIAL MEDICO- arreglo bidimensional
+    static String[][] historial = {{"P006", "10/06/2026", "Hemograma", "Valores normales"}, {"P006", "22/07/2026", "Radiografia", "Sin anomalias"}};
+
     public static void main(String[] args) {
         // TODO code application logic here
 
@@ -35,6 +53,7 @@ public class ProyectoPrograG8 {
         
         sc.nextLine();//LIMPIEZA BUFFER
 
+<<<<<<< Updated upstream
         // STRING BASE DE DATOS PRECARGADA INFORMACION DE MEDICOS 
         String[] nombreMedico = {"Dr. Alejandro Martínez", "Dra. Laura Hernández", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Pérez"};
         String[] codigoMedico = {"M001", "M002", "M003", "M004", "M005"};
@@ -47,6 +66,11 @@ public class ProyectoPrograG8 {
         
         // STRING BASE DE DATOS PRECARGADA INFORMACION ESPECIALIDAD DE MEDICOS (SEGUN ORDEN DE NOMBRES DE MEDICOS)
         String[] especialidadMedico={"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
+=======
+       
+
+
+>>>>>>> Stashed changes
         //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
         
         switch (menuPrincipal) {
@@ -182,13 +206,14 @@ public class ProyectoPrograG8 {
             System.out.println("3. Registrar diagnostico");
             System.out.println("4. Gestionar incapacidad");
             System.out.println("5. Atender consulta");
+            System.out.println("6. Salir");
 
             submenuMedico = sc.nextInt();
 
             // Switch #3 submenuMedico   
             switch (submenuMedico) {
                 case 1:  
-
+                    MostrarCitasAsignadasMedico(citas);
                     break;
 
                 case 2:
@@ -212,6 +237,30 @@ public class ProyectoPrograG8 {
         } while (submenuMedico != 5);
 
     }// FiN FUNCION submenuMedico
+       
+       
+       
+     public static void MostrarCitasAsignadasMedico(String[][] arreglo) {
+
+        System.out.println("--------------------");
+        System.out.println("   CITAS ASIGNADAS  ");
+        System.out.println("--------------------");
+
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.printf("Codigo: %s\n", arreglo[i][0]);
+            System.out.printf("Paciente: %s\n", arreglo[i][1]);
+            System.out.printf("Medico: %s\n", arreglo[i][2]);
+            System.out.printf("Fecha: %s\n", arreglo[i][3]);
+            System.out.printf("Motivo: %s\n", arreglo[i][4]);
+            System.out.printf("Estado: %s\n", arreglo[i][5]);
+            System.out.println("----------------");
+            
+          
+
+        }// Fin For 
+           
+       }// FIN FUNCION MOSTRAR CITAS ASIGNADA
+       
        
         
         
