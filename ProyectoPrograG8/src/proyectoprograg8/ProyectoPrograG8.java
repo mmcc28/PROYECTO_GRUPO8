@@ -53,24 +53,6 @@ public class ProyectoPrograG8 {
         
         sc.nextLine();//LIMPIEZA BUFFER
 
-<<<<<<< Updated upstream
-        // STRING BASE DE DATOS PRECARGADA INFORMACION DE MEDICOS 
-        String[] nombreMedico = {"Dr. Alejandro Martínez", "Dra. Laura Hernández", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Pérez"};
-        String[] codigoMedico = {"M001", "M002", "M003", "M004", "M005"};
-        String[] passwordMedico = {"Pass1", "Pass2", "Pass3", "Pass4", "Pass5"};
-        
-        // STRING BASE DE DATOS PRECARGADA INFORMACION DE PACIENTES
-        String[] nombrePaciente = {"María López", "Carlos Díaz", "Sofía Ramos", "Jorge Molina", "Lucía Torres"};
-        String[] codigoPaciente= {"P006","P007","P008","P009","P0010"};
-        String[] passwordPaciente = {"Pass6", "Pass7", "Pass8","Pass9", "Pass10" };
-        
-        // STRING BASE DE DATOS PRECARGADA INFORMACION ESPECIALIDAD DE MEDICOS (SEGUN ORDEN DE NOMBRES DE MEDICOS)
-        String[] especialidadMedico={"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
-=======
-       
-
-
->>>>>>> Stashed changes
         //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
         
         switch (menuPrincipal) {
