@@ -20,8 +20,9 @@ public class ProyectoPrograG8 {
     static String[] nombreMedico = {"Dr. Alejandro Martínez", "Dra. Laura Hernández", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Pérez"};
     static String[] codigoMedico = {"M001", "M002", "M003", "M004", "M005"};
     static String[] passwordMedico = {"Pass1", "Pass2", "Pass3", "Pass4", "Pass5"};
-      
-    String[] especialidadMedico={"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
+    static String[] especialidadMedico={"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
+    
+}
     // STRING BASE DE DATOS PRECARGADA INFORMACION DE PACIENTES- arreglos unidimensionales
     static  String[] nombrePaciente = {"María López", "Carlos Díaz", "Sofía Ramos", "Jorge Molina", "Lucía Torres"};
     static String[] codigoPaciente = {"P006", "P007", "P008", "P009", "P0010"};
@@ -62,14 +63,13 @@ public class ProyectoPrograG8 {
             System.out.println("3. Salir");
             menuPrincipal = sc.nextInt();
 
-<<<<<<< Updated upstream
             sc.nextLine();//LIMPIEZA BUFFER
 
             //SWITCH MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
             switch (menuPrincipal) {
                 case 1:
                     IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente,sc);
-=======
+
         //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
         
         switch (menuPrincipal) {
@@ -78,7 +78,7 @@ public class ProyectoPrograG8 {
                 IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
                 
                 SubmenuPaciente(sc,nombreMedico,especialidadMedico);
->>>>>>> Stashed changes
+
 
                     SubmenuPaciente(sc);
 
@@ -104,6 +104,8 @@ public class ProyectoPrograG8 {
 
     }// FIN MAIN
     
+    
+        
     public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) { //código para verificar, password para verificar, nombre para mostrar
 
         String usuario = "JOHN DOE";
@@ -136,15 +138,12 @@ public class ProyectoPrograG8 {
 
     }// FIN FUNCION IngresarUsuario
 
-<<<<<<< Updated upstream
-   
-=======
     // FUNCION SUBMENU PACIENTE
         
     public static void SubmenuPaciente(Scanner sc, String[] nombreMedico,String[] especialidadMedico) {
         
          int submenuPaciente =0; 
->>>>>>> Stashed changes
+
         System.out.println("--------------------------------");
         System.out.println("         MENU PACIENTE          ");
         System.out.println("--------------------------------");
@@ -162,12 +161,12 @@ public class ProyectoPrograG8 {
 
             // Switch #3 submenuMedico   
             switch (submenuPaciente) {
-<<<<<<< Updated upstream
+
                 case 1:
                        OpcCitasPaciente(sc, codigoPacienteActivo, nombrePacienteActivo);
                     break;
                            // llamar a mi funcion
->>>>>>> Stashed changes
+
                     break;
 
                 case 2:
@@ -210,7 +209,7 @@ public class ProyectoPrograG8 {
        switch (opcionCita){ // Menu de Citas
            case 1: 
                   System.out.println("Detalle de Cita");
-                  boolean encCita=false // (para saber si el paciente tiene una cita)
+                  boolean encCita=false; // (para saber si el paciente tiene una cita)
                           
                     for (int i=0; i<citas.length;i++){
                         if (citas[i][0].equals(codigoPaciente)){ // encuentra codigo en column. 0
@@ -307,9 +306,40 @@ public class ProyectoPrograG8 {
        
        }// Fin FuncionOpcCitasPaciente
          
-  
+
+    public static void seleccionCitas (Scanner sc, String[] medicos, String[]especialidad) {
+         int menuCitas=0;
+         
+         System.out.println("1.Nueva Cita");
+         System.out.println("2.Visualizar Citas");         
+         System.out.println("3.Cambiar Fecha de Cita");
+         System.out.println("4.Cancelar Cita");
+         System.out.println("5.Regresar al Menu Principal");
+         
+         menuCitas=sc.nextInt(); // Limpieza Buffer
+            
+         
+         
+         
+         switch (menuCitas){
+             case 1:
+                 System.out.println("---- ESPECIALIDADES DISPONIBLES---------");
+                 
+                 for (int i=0; i<especialidad.length;i++){
+                     System.out.println((i+1)+"."+especialidad[i]);
+                     
+                     }// Fin For MenuCitas
+                 System.out.println("Seleccione Especialidad:");
+               int seleccion=sc.hasNextInt();
+             
+         }// Fin Switch MenuCitas
+         
+     }// Fin Funcion SeleccionCitas  
     
-    
+
+
+    //FUNCIONES SWITCH SUBMENU MEDICO
+     
     public static void SubmenuMedico(Scanner sc, String codigoMedico) {
 
         int submenuMedico = 0;
@@ -367,47 +397,10 @@ public class ProyectoPrograG8 {
             }// FIN SWITCH  
         } while (submenuMedico != 6);
 
-<<<<<<< Updated upstream
-    }// FIN FUNCION submenuMedico
-=======
-    }// FiN FUNCION submenuMedico
-       
-     public static void seleccionCitas (Scanner sc, String[] medicos, String[]especialidad) {
-         int menuCitas=0;
-         
-         System.out.println("1.Nueva Cita");
-         System.out.println("2.Visualizar Citas");         
-         System.out.println("3.Cambiar Fecha de Cita");
-         System.out.println("4.Cancelar Cita");
-         System.out.println("5.Regresar al Menu Principal");
-         
-         menuCitas=sc.nextInt(); // Limpieza Buffer
-            
-         
-         
-         
-         switch (menuCitas){
-             case 1:
-                 System.out.println("---- ESPECIALIDADES DISPONIBLES---------");
-                 
-                 for (int i=0; i<especialidad.length;i++){
-                     System.out.println((i+1)+"."+especialidad[i]);
-                     
-                     }// Fin For MenuCitas
-                 System.out.println("Seleccione Especialidad:");
-               int seleccion=sc.hasNextInt();
-             
-         }// Fin Switch MenuCitas
-         
-     }// Fin Funcion SeleccionCitas  
-        
-    
-    
-    
-}// FIN CLASs
->>>>>>> Stashed changes
 
-    //FUNCIONES SWITCH SUBMENU MEDICO
+
+    }// FiN FUNCION submenuMedico
+    
     public static void MostrarCitasAsignadasMedico(String[][] arregloCitas, String codigoMedico) {
 
         System.out.println("--------------------");
