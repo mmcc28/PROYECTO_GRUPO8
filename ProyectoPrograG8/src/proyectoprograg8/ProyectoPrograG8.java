@@ -50,60 +50,50 @@ public class ProyectoPrograG8 {
         Scanner sc = new Scanner(System.in);
         int menuPrincipal = 0;
 
-        
         do {
-             //MENSAJE BIENVENIDA 
-        System.out.println("--------------------------------");
-        System.out.println("BIENVENVIDOS A CLINICAS MEDICAS ");
-        System.out.println("--------------------------------");
-        System.out.println("FAVOR SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
-        System.out.println("1. Ingresar como Paciente");
-        System.out.println("2. Ingresar como Médico");
-        System.out.println("3. Salir");
-        menuPrincipal = sc.nextInt();
-        
-        sc.nextLine();//LIMPIEZA BUFFER
+            //MENSAJE BIENVENIDA 
+            System.out.println("--------------------------------");
+            System.out.println("BIENVENVIDOS A CLINICAS MEDICAS ");
+            System.out.println("--------------------------------");
+            System.out.println("FAVOR SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
+            System.out.println("1. Ingresar como Paciente");
+            System.out.println("2. Ingresar como Médico");
+            System.out.println("3. Salir");
+            menuPrincipal = sc.nextInt();
 
-        //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
-        
-        switch (menuPrincipal) {
-            case 1:
+            sc.nextLine();//LIMPIEZA BUFFER
+
+            //SWITCH MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
+            switch (menuPrincipal) {
+                case 1:
                 ;
-                IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
-                
-                SubmenuPaciente(sc);
+                    IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
 
-                break;
+                    SubmenuPaciente(sc);
 
-            case 2:
-                            
-                IngresarUsuario(codigoMedico, passwordMedico, nombreMedico, sc);
+                    break;
 
-               
-                
-                break;
+                case 2:
 
-            case 3:
-                System.out.println("REGRESA PRONTO");
+                    IngresarUsuario(codigoMedico, passwordMedico, nombreMedico, sc);
 
-                break;
+                    break;
 
-            default:
-                System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
-                break;
-        }// FIN SWITCH MENU PRINCIPAL
-        
-        } while (menuPrincipal !=3);
+                case 3:
+                    System.out.println("REGRESA PRONTO");
 
-        
-              
-            
-        
+                    break;
+
+                default:
+                    System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    break;
+            }// FIN SWITCH MENU PRINCIPAL
+
+        } while (menuPrincipal != 3);
+
     }// FIN MAIN
     
-    
-    // FUNCION INGRESAR USUARIO Y CONTRASENA PARA MEDICO Y PACIENTE
-        public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) { //código para verificar, password para verificar, nombre para mostrar
+    public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) { //código para verificar, password para verificar, nombre para mostrar
 
         String usuario = "JOHN DOE";
         String contrasena = "JOHN DOE";
@@ -123,28 +113,26 @@ public class ProyectoPrograG8 {
                 validado = true;
                 System.out.printf("BIENVENIDO: %s\n", nombre[i]);
                 SubmenuMedico(sc, usuario);
-                
-           break; // Break para cerrar el ciclo
-           
+
+                break; // Break para cerrar el ciclo
+
             }// fin if
         }// fin for
-          
+
         if (validado == false) {
             System.out.println("USUARIO O CONTRASENA INCORRECTOS");
         }// fin if
 
     }// FIN FUNCION IngresarUsuario
 
-    // FUNCION SUBMENU PACIENTE
-        
     public static void SubmenuPaciente(Scanner sc) {
-        
-         int submenuPaciente =0; 
+
+        int submenuPaciente = 0;
         System.out.println("--------------------------------");
         System.out.println("         MENU PACIENTE          ");
         System.out.println("--------------------------------");
         System.out.println("SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
-       
+
         do {
 
             System.out.println("1. Menu de Citas ");
@@ -157,8 +145,8 @@ public class ProyectoPrograG8 {
 
             // Switch #3 submenuMedico   
             switch (submenuPaciente) {
-                case 1:  
-                       
+                case 1:
+
                     break;
 
                 case 2:
@@ -176,23 +164,26 @@ public class ProyectoPrograG8 {
                     break;
 
                 default:
-        System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
                     break;
             }// FIN SWITCH  
         } while (submenuPaciente != 5);
 
-    }// FiN FUNCION Submenu Paciente
-             
-    // FUNCION SUBMENU MEDICO
-       
-       public static void SubmenuMedico (Scanner sc, String codigoMedico) {
-        
-        int submenuMedico =0; 
+    }// FFIN FUNCION Submenu Paciente
+    
+    //FUNCIONES SWITCH SUBMENUPACIENTE
+    
+    
+    
+    
+    public static void SubmenuMedico(Scanner sc, String codigoMedico) {
+
+        int submenuMedico = 0;
         System.out.println("--------------------------------");
         System.out.println("         MENU MEDICO            ");
         System.out.println("--------------------------------");
         System.out.println("SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
-       
+
         do {
 
             System.out.println("1. Ver citas asignadas");
@@ -206,7 +197,7 @@ public class ProyectoPrograG8 {
 
             // Switch #3 submenuMedico   
             switch (submenuMedico) {
-                case 1:  
+                case 1:
                     MostrarCitasAsignadasMedico(citas, codigoMedico);
                     break;
 
@@ -217,39 +208,45 @@ public class ProyectoPrograG8 {
 
                 case 3:
 
+                    sc.nextLine(); // Limpieza buffer por el enter del menu
+                    RegistarDiagnostico(sc);
+
                     break;
 
                 case 4:
-                    break;
-                    
-                case 6:
-                    System.out.println("VOLVIENDO AL MENU PRINCIPAL...");
+                    sc.nextLine(); // Limpieza buffer por el enter del menu
+                    GestionarIncapacidades(sc);
                     break;
 
                 case 5:
+                    sc.nextLine();// Limpieza buffer por el enter del menu
+                    AtenderConsulta(sc);
+                    break;
+
+                case 6:
+                    System.out.println("VOLVIENDO AL MENU PRINCIPAL....");
                     break;
 
                 default:
-        System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
                     break;
             }// FIN SWITCH  
         } while (submenuMedico != 6);
 
-    }// FiN FUNCION submenuMedico
-       
-       
-       
-     public static void MostrarCitasAsignadasMedico(String[][] arregloCitas, String codigoMedico) {
+    }// FIN FUNCION submenuMedico
+
+    //FUNCIONES SWITCH SUBMENU MEDICO
+    public static void MostrarCitasAsignadasMedico(String[][] arregloCitas, String codigoMedico) {
 
         System.out.println("--------------------");
         System.out.println("   CITAS ASIGNADAS  ");
         System.out.println("--------------------");
 
         for (int i = 0; i < arregloCitas.length; i++) {
-            if (arregloCitas[i][2].equals(codigoMedico)) {  
+            if (arregloCitas[i][2].equals(codigoMedico)) {
                 // printf de cada columna
                 System.out.printf("codigo Paciente: %s\n", arregloCitas[i][0]);
-                System.out.printf("Nombre Paciente: %s\n",arregloCitas [i][1]);
+                System.out.printf("Nombre Paciente: %s\n", arregloCitas[i][1]);
                 System.out.printf("Medico: %s\n", arregloCitas[i][2]);
                 System.out.printf("Fecha: %s\n", arregloCitas[i][3]);
                 System.out.printf("Motivo: %s\n", arregloCitas[i][4]);
@@ -259,10 +256,9 @@ public class ProyectoPrograG8 {
             }// Fin if
         }// Fin for
 
-    }// FIN FUNCION MOSTRAR CITAS ASIGNADA MEDICA
+    }// FIN FUNCION MostrarCitasAsignadasMedicas
 
-       
-       public static void MostrarHistorialMedico(String[][] arregloHistorial, Scanner sc) {
+    public static void MostrarHistorialMedico(String[][] arregloHistorial, Scanner sc) {
 
         String codigoPaciente = "John Doe";
 
@@ -287,9 +283,100 @@ public class ProyectoPrograG8 {
             }// Fin if
         }// Fin For
 
-    }// FIN FUNCION MOSTRAR HISTORIAL MEDICO
+    }// FIN FUNCION MostrarHistorialMedico
 
+    public static void RegistarDiagnostico(Scanner sc) {
 
+        String codigoPaciente = "@";
+        String nombrePaciente = "@";
+        String diagnosticoPaciente = "John Doe";
+        String observacionesPaciente = "John Doe";
+
+        System.out.println("INGRESE NOMBRE DEL PACIENTE");
+        nombrePaciente = sc.nextLine();
+
+        System.out.println("INGRESE CODIGO DEL PACIENTE");
+        codigoPaciente = sc.nextLine();
+
+        System.out.println("INGRESE DIAGNOSTICO DEL PACIENTE");
+        diagnosticoPaciente = sc.nextLine();
+
+        System.out.println("INGRESE OBSERVACIONES ");
+        observacionesPaciente = sc.nextLine();
+
+        System.out.println("--------------------------");
+        System.out.println("  DIAGNOSTICO REGISTRADO  ");
+        System.out.printf("Nombre Paciente: %s\n Diagnostico: %s\n Observaciones: %s\n", nombrePaciente, diagnosticoPaciente, observacionesPaciente);
+        System.out.println("--------------------------");
+
+    }// FIN FUNCION RegistrarDiagnostico
+
+    public static void GestionarIncapacidades(Scanner sc) {
+
+        int diasIncapacidad = 0;
+        String nombrePaciente = "@";
+        String motivoIncapacidad = "@";
+
+        System.out.println("INGRESE NOMBRE DEL PACIENTE:");
+        nombrePaciente = sc.nextLine();
+
+        System.out.println("INGRESE DIAS DE INCAPACIDAD");
+        diasIncapacidad = sc.nextInt();
+
+        sc.nextLine(); // limpia buffer
+
+        System.out.println("INGRESE MOTIVO:");
+        motivoIncapacidad = sc.nextLine();
+
+        if (diasIncapacidad <= 0) {
+            System.out.println("ERROR: DIAS NO VALIDOS");
+        } else if (diasIncapacidad <= 3) {
+            System.out.println("INCAPACIDAD REGISTRADA");
+            
+            System.out.println("");
+            System.out.println("-------------------------------");
+            System.out.printf("Paciente: %s\n", nombrePaciente);
+            System.out.printf("Dias: %d\n", diasIncapacidad);
+            System.out.printf("Motivo: %s\n", motivoIncapacidad);
+            System.out.println("------------------------------");
+
+        }// FIN IF
+
+    }// FIN FUNCION GestionarIncapacidades
+
+    public static void AtenderConsulta(Scanner sc) {
+
+        int tipoConsulta = 0;
+        String motivoConsulta = "@";
+
+        System.out.println("-------------------------------");
+        System.out.println("       ATENDER CONSULTA        ");
+        System.out.println("-------------------------------");
+        System.out.println("1. Por llamada");
+        System.out.println("2. Por mensaje");
+        System.out.print("SELECCIONE UNA OPCION: ");
+        tipoConsulta = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("INGRESE MOTIVO DE CONSULTA:");
+        motivoConsulta = sc.nextLine();
+
+        switch (tipoConsulta) {
+            case 1:
+                System.out.println("INICIANDO LLAMADA...");
+                System.out.printf("Motivo: %s\n", motivoConsulta);
+                System.out.println("CONSULTA POR LLAMADA ATENDIDA");
+                break;
+            case 2:
+                System.out.println("ENVIANDO MENSAJE...");
+                System.out.printf("Motivo: %s\n", motivoConsulta);
+                System.out.println("CONSULTA POR MENSAJE ATENDIDA");
+                break;
+            default:
+                System.out.println("OPCION NO VALIDA");
+        }// fin switch
+
+    }// FIN FUNCION AtenderConsulta
     
     
     
