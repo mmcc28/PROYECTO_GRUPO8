@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package proyectoprograg8;
 
 import java.util.Scanner;
 
@@ -15,16 +14,16 @@ public class ProyectoPrograG8 {
     /**
      * @param args the command line arguments
      */
-    
+
+
     // STRING BASE DE DATOS PRECARGADA INFORMACION DE MEDICOS- arreglos unidimensionales
     static String[] nombreMedico = {"Dr. Alejandro Martínez", "Dra. Laura Hernández", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Pérez"};
     static String[] codigoMedico = {"M001", "M002", "M003", "M004", "M005"};
     static String[] passwordMedico = {"Pass1", "Pass2", "Pass3", "Pass4", "Pass5"};
-    static String[] especialidadMedico={"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
-    
-}
+    static String[] especialidadMedico = {"Medicina General", "Dermatologia", "Pediatria", "Cardiologia", "Neurologia"};
+
     // STRING BASE DE DATOS PRECARGADA INFORMACION DE PACIENTES- arreglos unidimensionales
-    static  String[] nombrePaciente = {"María López", "Carlos Díaz", "Sofía Ramos", "Jorge Molina", "Lucía Torres"};
+    static String[] nombrePaciente = {"María López", "Carlos Díaz", "Sofía Ramos", "Jorge Molina", "Lucía Torres"};
     static String[] codigoPaciente = {"P006", "P007", "P008", "P009", "P0010"};
     static String[] passwordPaciente = {"Pass6", "Pass7", "Pass8", "Pass9", "Pass10"};
 
@@ -47,8 +46,6 @@ public class ProyectoPrograG8 {
     };
 
     public static void main(String[] args) {
-        // TODO code application logic here
-
         Scanner sc = new Scanner(System.in);
         int menuPrincipal = 0;
 
@@ -61,53 +58,34 @@ public class ProyectoPrograG8 {
             System.out.println("1. Ingresar como Paciente");
             System.out.println("2. Ingresar como Médico");
             System.out.println("3. Salir");
+            System.out.print("Opción: ");
             menuPrincipal = sc.nextInt();
+            sc.nextLine(); //LIMPIEZA BUFFER
 
-            sc.nextLine();//LIMPIEZA BUFFER
-
-            //SWITCH MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
+            //SWITCH MENU PRINCIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
             switch (menuPrincipal) {
                 case 1:
-                    IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente,sc);
-
-        //SWITCH #1 MENU PRINCPIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
-        
-        switch (menuPrincipal) {
-            case 1:
-                ;
-                IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
-                
-                SubmenuPaciente(sc,nombreMedico,especialidadMedico);
-
-
-                    SubmenuPaciente(sc);
-
+                    IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
                     break;
 
                 case 2:
-
                     IngresarUsuario(codigoMedico, passwordMedico, nombreMedico, sc);
-
                     break;
 
                 case 3:
                     System.out.println("REGRESA PRONTO");
-
                     break;
 
                 default:
                     System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
                     break;
-            }// FIN SWITCH MENU PRINCIPAL
+            } // FIN SWITCH MENU PRINCIPAL
 
         } while (menuPrincipal != 3);
 
-    }// FIN MAIN
-    
-    
-        
-    public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) { //código para verificar, password para verificar, nombre para mostrar
+    } // FIN MAIN
 
+    public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) {
         String usuario = "JOHN DOE";
         String contrasena = "JOHN DOE";
 
@@ -119,157 +97,146 @@ public class ProyectoPrograG8 {
 
         boolean validado = false;
 
-        //ciclo for: verificar el usuario y contrasena que escribio para mostrar el Dr correspondiente
-        for (int i = 0; i < codigo.length; i++) { // recorre todo el ciclo buscando los datos del medico
-            //ciclo if operadores logicos && 
-            if (codigo[i].equals(usuario) && password[i].equals(contrasena)) { // equals para comparar strings
+        // Verificar usuario y contraseña
+        for (int i = 0; i < codigo.length; i++) {
+            if (codigo[i].equals(usuario) && password[i].equals(contrasena)) {
                 validado = true;
                 System.out.printf("BIENVENIDO: %s\n", nombre[i]);
-                SubmenuMedico(sc, usuario);
+                
+                // Si el código empieza con 'P' es paciente, si empieza con 'M' es médico
+                if (codigo[i].startsWith("P")) {
+                    SubmenuPaciente(sc, nombreMedico, especialidadMedico, usuario, nombre[i]);
+                } else if (codigo[i].startsWith("M")) {
+                    System.out.println("Ingresando al menú de médicos... (Falta implementar SubmenuMedico)");
+                }
+                break;
+            }
+        }
 
-                break; // Break para cerrar el ciclo
-
-            }// fin if
-        }// fin for
-
-        if (validado == false) {
+        if (!validado) {
             System.out.println("USUARIO O CONTRASENA INCORRECTOS");
-        }// fin if
-
-    }// FIN FUNCION IngresarUsuario
+        }
+    } // FIN FUNCION IngresarUsuario
 
     // FUNCION SUBMENU PACIENTE
-        
-    public static void SubmenuPaciente(Scanner sc, String[] nombreMedico,String[] especialidadMedico) {
-        
-         int submenuPaciente =0; 
-
-        System.out.println("--------------------------------");
-        System.out.println("         MENU PACIENTE          ");
-        System.out.println("--------------------------------");
-        System.out.println("SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
+    public static void SubmenuPaciente(Scanner sc, String[] nomMedico, String[] especMedico, String codPaciente, String nombPaciente) {
+        int submenuPaciente = 0;
 
         do {
-
+            System.out.println("--------------------------------");
+            System.out.println("         MENU PACIENTE          ");
+            System.out.println("--------------------------------");
+            System.out.println("SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
             System.out.println("1. Menu de Citas ");
             System.out.println("2. Historial Medico");
-            System.out.println("3. Regis trar Informacion");
+            System.out.println("3. Registrar Informacion");
             System.out.println("4. Notificaciones");
-            System.out.println("5. Consulta Medica por llamada");
+            System.out.println("5. Volver al Menu Principal");
 
             submenuPaciente = sc.nextInt();
+            sc.nextLine(); // Limpiar buffer
 
-            // Switch #3 submenuMedico   
             switch (submenuPaciente) {
-
                 case 1:
-                       OpcCitasPaciente(sc, codigoPacienteActivo, nombrePacienteActivo);
+                    OpcCitasPaciente(sc, codPaciente, nombPaciente);
                     break;
-                           // llamar a mi funcion
-
-                    break;
-
                 case 2:
-
+                    System.out.println("Funcionalidad Historial Médico en desarrollo.");
                     break;
-
                 case 3:
-
+                    System.out.println("Funcionalidad Registrar Información en desarrollo.");
                     break;
-
                 case 4:
+                    System.out.println("Funcionalidad Notificaciones en desarrollo.");
                     break;
-
                 case 5:
+                    System.out.println("Saliendo al menú principal...");
                     break;
-
                 default:
                     System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
                     break;
-            }// FIN SWITCH  
+            } // FIN SWITCH  
         } while (submenuPaciente != 5);
+    } // FIN FUNCION Submenu Paciente
 
-    }// FFIN FUNCION Submenu Paciente
-    
-    //FUNCIONES SWITCH SUBMENUPACIENTE
-    public static void OpcCitasPaciente(Scanner sc, String codigoPaciente, String nombrePaciente){
-       int opcionCita=0;
-       
-       do {
-           System.out.println("---Menu Citas----");
-           System.out.println("1. Visualizar Citas");
-           System.out.println("2. Modificar Cita");
-           System.out.println("3. Cancelar Cita");
-           System.out.println("4. Volver a Menu Principal");
-           System.out.print("Seleccione el Numero de La Opcion: ");
-           opcionCita=sc.nextInt();
-           sc.nextLine(); // Limpiar Buffer
-      
-       
-       switch (opcionCita){ // Menu de Citas
-           case 1: 
-                  System.out.println("Detalle de Cita");
-                  boolean encCita=false; // (para saber si el paciente tiene una cita)
-                          
-                    for (int i=0; i<citas.length;i++){
-                        if (citas[i][0].equals(codigoPaciente)){ // encuentra codigo en column. 0
-                            encCita=true;
-                       
-                 String nombreMed="No Encontrado";
-                 String especialidMed="General";
-                    for (int j = 0; j < codigoMedico.length; j++) {
-                                if (codigoMedico[j].equals(citas[i][2])) { // Columna 2 tiene el codigo del medico
-                                    nombreMed = nombreMedico[j];
-                                    especialidMed = especialidadMedico[j];
-                                }// Fin If
-                    }// Fin For medico 
-                        }// Fin for Codigo paciente
-                        
-                    System.out.println("Medico: " +nombreMed + " (" + especialidMed + ")");
-                    System.out.println("Fecha:  " + citas[i][3]);
-                    System.out.println("Motivo: " + citas[i][4]);
-                    System.out.println("Estado: " + citas[i][5]);
-                    }// Fin For Citas 
-                 }// Fin Switch OpcionCitas
-                 if (encCita == false) {
-                        System.out.println("No tienes ninguna cita asignada");
-                    }// Fin uf encontrarCita
+    // FUNCIONES SWITCH SUBMENUPACIENTE
+    public static void OpcCitasPaciente(Scanner sc, String codgPaciente, String nombPaciente) {
+        int opcionCita = 0;
+
+        do {
+            System.out.println("---Menu Citas----");
+            System.out.println("1. Visualizar Citas");
+            System.out.println("2. Modificar Cita");
+            System.out.println("3. Cancelar Cita");
+            System.out.println("4. Volver a Menu Principal");
+            System.out.print("Seleccione el Numero de La Opcion: ");
+            opcionCita = sc.nextInt();
+            sc.nextLine(); // Limpiar Buffer
+
+            switch (opcionCita) {
+                case 1:
+                    System.out.println("\n--- Ver Citas ---");
+                    boolean encontroCita = false; 
+                    
+                    for (int i = 0; i < citas.length; i++) {
+                        if (citas[i][0].equals(codgPaciente)) { 
+                            encontroCita = true;
+                            
+                            String medNombre = "No asignado";
+                            String medEspe = "General";
+                            for (int j = 0; j < codigoMedico.length; j++) {
+                                if (codigoMedico[j].equals(citas[i][2])) { 
+                                    medNombre = nombreMedico[j];
+                                    medEspe = especialidadMedico[j];
+                                }
+                            }
+                            
+                            System.out.println("Médico: " + medNombre + " (" + medEspe + ")");
+                            System.out.println("Fecha:  " + citas[i][3]);
+                            System.out.println("Motivo: " + citas[i][4]);
+                            System.out.println("Estado: " + citas[i][5]);
+                            System.out.println("----------------");
+                        }
+                    }
+                    
+                    if (encontroCita == false) {
+                        System.out.println("No tienes ninguna cita registrada.");
+                    }
                     break;
 
                 case 2:
-                    boolean programando = false;
+                    boolean programado = false;
                     
                     for (int i = 0; i < citas.length; i++) {
-                        if (citas[i][0].equals(codPaciente)) {
-                            programando = true;
+                        if (citas[i][0].equals(codgPaciente)) {
+                            programado = true;
                             
                             if (citas[i][5].equals("Cancelada")) {
-                                System.out.println("No puedes reprogramar una cita que ya ha sido cancelada.");
+                                System.out.println("No puede programar una cita que ya fue cancelada.");
                             } else {
-                                System.out.println("Ingrese la nueva fecha (AAAA/MM/DD):");
+                                System.out.println("Ingrese la nueva fecha (AAA/MM/DD):");
                                 String nuevaFecha = sc.nextLine();
-                                citas[i][3] = nuevaFecha; // Modifica la fecha directamente 
-                                System.out.println("¡Cita programada con éxito para el día " + nuevaFecha + "!");
-                            }// Fin els
-                        }// Fin if Codigo paciebte 
-                    }// Fin For Citas Programando
+                                citas[i][3] = nuevaFecha; 
+                                System.out.println("¡Cita reprogramada con éxito para el día " + nuevaFecha + "!");
+                            }
+                        }
+                    }
                     
-                    if (programando == false) {
-                        System.out.println("No se encontró ninguna cita para modificar.");
-                    }// Fin If programando false
-                    break;
+                    if (programado == false) {
+                     
+                    }
 
+                    
                 case 3:
-                    boolean Cancelada = false;
+                    boolean cancelado = false;
                     
                     for (int i = 0; i < citas.length; i++) {
-                        if (citas[i][0].equals(codigoPaciente)) {
-                            Cancelada = true;
+                        if (citas[i][0].equals(codgPaciente)) {
+                            cancelado = true;
                             
                             if (citas[i][5].equals("Cancelada")) {
-                                System.out.println("Cita Cancelada");
-                            } // Fin If Citas Canceladas
-                            else {
+                                System.out.println("Cita ya cancelada");
+                            } else {
                                 System.out.println("¿Está seguro que desea cancelar su cita?");
                                 System.out.println("(1. Si / 2. No)");
                                 System.out.println("Respuesta:");
@@ -278,17 +245,17 @@ public class ProyectoPrograG8 {
                                 
                                 if (confirmar == 1) {
                                     citas[i][5] = "Cancelada"; // Cambia el estado directamente en la matriz
-                                    System.out.println("Su cita fue cancelada");
+                                    System.out.println("Su cita ha sido cancelada");
                                 } else {
                                     System.out.println("Operación abortada.");
-                                }// Fin else de confirma si quiere cancelar cita
-                            }// Fin else cancelacion de cita con respuesta
-                        }// Fin if citas(codigoPaciente)
-                    }// fin for cancelacion cita
+                                }
+                            }
+                        }
+                    }
                     
-                    if (cancelada == false) {
-                        System.out.println("No tienes citas por cancelar");
-                    }// if cancelar cita
+                    if (cancelado == false) {
+                        System.out.println("No tienes citas para cancelar");
+                    }
                     break;
 
                 case 4:
@@ -298,45 +265,12 @@ public class ProyectoPrograG8 {
                 default:
                     System.out.println("Opción no válida.");
                     break;
-            }// fin do
-       
-         while (opcionCitas != 4);
-     
-
-       
-       }// Fin FuncionOpcCitasPaciente
-         
-
-    public static void seleccionCitas (Scanner sc, String[] medicos, String[]especialidad) {
-         int menuCitas=0;
-         
-         System.out.println("1.Nueva Cita");
-         System.out.println("2.Visualizar Citas");         
-         System.out.println("3.Cambiar Fecha de Cita");
-         System.out.println("4.Cancelar Cita");
-         System.out.println("5.Regresar al Menu Principal");
-         
-         menuCitas=sc.nextInt(); // Limpieza Buffer
-            
-         
-         
-         
-         switch (menuCitas){
-             case 1:
-                 System.out.println("---- ESPECIALIDADES DISPONIBLES---------");
-                 
-                 for (int i=0; i<especialidad.length;i++){
-                     System.out.println((i+1)+"."+especialidad[i]);
-                     
-                     }// Fin For MenuCitas
-                 System.out.println("Seleccione Especialidad:");
-               int seleccion=sc.hasNextInt();
-             
-         }// Fin Switch MenuCitas
-         
-     }// Fin Funcion SeleccionCitas  
+            }
+        } while (opcionCita != 4);
+    }
+    } // FIN FUNCION OpcCitasPaciente
     
-
+    
 
     //FUNCIONES SWITCH SUBMENU MEDICO
      
@@ -362,7 +296,7 @@ public class ProyectoPrograG8 {
             // Switch #3 submenuMedico   
             switch (submenuMedico) {
                 case 1:
-                    MostrarCitasAsignadasMedico(citas, codigoMedico);
+                    MostrarCitasAsignadasMedico(citas,codigoMedico);
                     break;
 
                 case 2:
@@ -542,7 +476,5 @@ public class ProyectoPrograG8 {
         }// fin switch
 
     }// FIN FUNCION AtenderConsulta
+
     
-    
-    
-}// FIN CLASS
