@@ -65,11 +65,11 @@ public class ProyectoPrograG8 {
             //SWITCH MENU PRINCIPAL Y LOGIN SEGUN TIPO DE USUARIO A INGRESAR
             switch (menuPrincipal) {
                 case 1:
-                    IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc);
+                    IngresarUsuario(codigoPaciente, passwordPaciente, nombrePaciente, sc, false);
                     break;
 
                 case 2:
-                    IngresarUsuario(codigoMedico, passwordMedico, nombreMedico, sc);
+                    IngresarUsuario(codigoMedico, passwordMedico, nombreMedico, sc, true);
                     break;
 
                 case 3:
@@ -85,7 +85,8 @@ public class ProyectoPrograG8 {
 
     } // FIN MAIN
 
-    public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc) {
+    public static void IngresarUsuario(String[] codigo, String[] password, String[] nombre, Scanner sc, boolean esMedico) { //código para verificar, password para verificar, nombre para mostrar
+
         String usuario = "JOHN DOE";
         String contrasena = "JOHN DOE";
 
@@ -97,29 +98,34 @@ public class ProyectoPrograG8 {
 
         boolean validado = false;
 
-        // Verificar usuario y contraseña
-        for (int i = 0; i < codigo.length; i++) {
-            if (codigo[i].equals(usuario) && password[i].equals(contrasena)) {
+        //ciclo for: verificar el usuario y contrasena que escribio para mostrar el Dr correspondiente
+        for (int i = 0; i < codigo.length; i++) { // recorre todo el ciclo buscando los datos del medico
+            //ciclo if operadores logicos && 
+            if (codigo[i].equals(usuario) && password[i].equals(contrasena)) { // equals para comparar strings
                 validado = true;
                 System.out.printf("BIENVENIDO: %s\n", nombre[i]);
-                
-                // Si el código empieza con 'P' es paciente, si empieza con 'M' es médico
-                if (codigo[i].startsWith("P")) {
-                    SubmenuPaciente(sc, nombreMedico, especialidadMedico, usuario, nombre[i]);
-                } else if (codigo[i].startsWith("M")) {
-                    System.out.println("Ingresando al menú de médicos... (Falta implementar SubmenuMedico)");
-                }
-                break;
-            }
-        }
 
-        if (!validado) {
+                if (esMedico == true) {
+                    SubmenuMedico(sc, usuario);
+                } else {
+                    SubmenuPaciente(sc, usuario);
+                }// finn if
+
+                
+
+                break; // Break para cerrar el ciclo
+
+            }// fin if
+        }// fin for
+
+        if (validado == false) {
             System.out.println("USUARIO O CONTRASENA INCORRECTOS");
-        }
-    } // FIN FUNCION IngresarUsuario
+        }// fin if
+
+    }// FIN FUNCION IngresarUsuario
 
     // FUNCION SUBMENU PACIENTE
-    public static void SubmenuPaciente(Scanner sc, String[] nomMedico, String[] especMedico, String codPaciente, String nombPaciente) {
+    public static void SubmenuPaciente(Scanner sc, String codigoPaciente ) {
         int submenuPaciente = 0;
 
         do {
@@ -131,7 +137,7 @@ public class ProyectoPrograG8 {
             System.out.println("2. Historial Medico");
             System.out.println("3. Registrar Informacion");
             System.out.println("4. Notificaciones");
-            System.out.println("5. Volver al Menu Principal");
+            System.out.println("5. Salir");
 
             submenuPaciente = sc.nextInt();
             sc.nextLine(); // Limpiar buffer
@@ -162,7 +168,7 @@ public class ProyectoPrograG8 {
     // FUNCIONES SWITCH SUBMENUPACIENTE
    public static void OpcCitasPaciente(Scanner sc, String codgPaciente, String nombPaciente) {
     int opcionCita = 0;
-
+    
     do {
         System.out.println("---Menu Citas----");
         System.out.println("1. Visualizar Citas");
@@ -269,7 +275,6 @@ public class ProyectoPrograG8 {
     } while (opcionCita != 4);
 } // Fin Funcion OpcCitasPaciente
          
-
    
 
     //FUNCIONES SWITCH SUBMENU MEDICO
@@ -330,7 +335,6 @@ public class ProyectoPrograG8 {
                     break;
             }// FIN SWITCH  
         } while (submenuMedico != 6);
-
 
 
     }// FiN FUNCION submenuMedico
