@@ -144,7 +144,7 @@ public class ProyectoPrograG8 {
 
             switch (submenuPaciente) {
                 case 1:
-                    OpcCitasPaciente(sc, codPaciente, nombPaciente);
+                    OpcCitasPaciente(sc, codigoPaciente);
                     break;
                 case 2:
                     System.out.println("Funcionalidad Historial Médico en desarrollo.");
@@ -166,7 +166,7 @@ public class ProyectoPrograG8 {
     } // FIN FUNCION Submenu Paciente
 
     // FUNCIONES SWITCH SUBMENUPACIENTE
-   public static void OpcCitasPaciente(Scanner sc, String codgPaciente, String nombPaciente) {
+   public static void OpcCitasPaciente(Scanner sc, String codigoPaciente) {
     int opcionCita = 0;
     
     do {
@@ -185,7 +185,7 @@ public class ProyectoPrograG8 {
                 boolean encontroCita = false; 
                 
                 for (int i = 0; i < citas.length; i++) {
-                    if (citas[i][0].equals(codgPaciente)) { 
+                    if (citas[i][0].equals(codigoPaciente)) { 
                         encontroCita = true;
                         
                         String medNombre = "No asignado";
@@ -214,7 +214,7 @@ public class ProyectoPrograG8 {
                 boolean programado = false;
                 
                 for (int i = 0; i < citas.length; i++) {
-                    if (citas[i][0].equals(codgPaciente)) {
+                    if (citas[i][0].equals(codigoPaciente)) {
                         programado = true;
                         
                         if (citas[i][5].equals("Cancelada")) {
@@ -237,7 +237,7 @@ public class ProyectoPrograG8 {
                 boolean cancelado = false;
                 
                 for (int i = 0; i < citas.length; i++) {
-                    if (citas[i][0].equals(codgPaciente)) {
+                    if (citas[i][0].equals(codigoPaciente)) {
                         cancelado = true;
                         
                         if (citas[i][5].equals("Cancelada")) {
