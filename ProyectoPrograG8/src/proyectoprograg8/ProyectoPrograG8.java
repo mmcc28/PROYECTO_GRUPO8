@@ -160,117 +160,117 @@ public class ProyectoPrograG8 {
     } // FIN FUNCION Submenu Paciente
 
     // FUNCIONES SWITCH SUBMENUPACIENTE
-    public static void OpcCitasPaciente(Scanner sc, String codgPaciente, String nombPaciente) {
-        int opcionCita = 0;
+   public static void OpcCitasPaciente(Scanner sc, String codgPaciente, String nombPaciente) {
+    int opcionCita = 0;
 
-        do {
-            System.out.println("---Menu Citas----");
-            System.out.println("1. Visualizar Citas");
-            System.out.println("2. Modificar Cita");
-            System.out.println("3. Cancelar Cita");
-            System.out.println("4. Volver a Menu Principal");
-            System.out.print("Seleccione el Numero de La Opcion: ");
-            opcionCita = sc.nextInt();
-            sc.nextLine(); // Limpiar Buffer
+    do {
+        System.out.println("---Menu Citas----");
+        System.out.println("1. Visualizar Citas");
+        System.out.println("2. Modificar Cita");
+        System.out.println("3. Cancelar Cita");
+        System.out.println("4. Volver a Menu Principal");
+        System.out.print("Seleccione el Numero de La Opcion: ");
+        opcionCita = sc.nextInt();
+        sc.nextLine(); // Limpiar Buffer
 
-            switch (opcionCita) {
-                case 1:
-                    System.out.println("\n--- Ver Citas ---");
-                    boolean encontroCita = false; 
-                    
-                    for (int i = 0; i < citas.length; i++) {
-                        if (citas[i][0].equals(codgPaciente)) { 
-                            encontroCita = true;
-                            
-                            String medNombre = "No asignado";
-                            String medEspe = "General";
-                            for (int j = 0; j < codigoMedico.length; j++) {
-                                if (codigoMedico[j].equals(citas[i][2])) { 
-                                    medNombre = nombreMedico[j];
-                                    medEspe = especialidadMedico[j];
-                                }
+        switch (opcionCita) {
+            case 1:
+                System.out.println("\n--- Ver Citas ---");
+                boolean encontroCita = false; 
+                
+                for (int i = 0; i < citas.length; i++) {
+                    if (citas[i][0].equals(codgPaciente)) { 
+                        encontroCita = true;
+                        
+                        String medNombre = "No asignado";
+                        String medEspe = "General";
+                        for (int j = 0; j < codigoMedico.length; j++) {
+                            if (codigoMedico[j].equals(citas[i][2])) { 
+                                medNombre = nombreMedico[j];
+                                medEspe = especialidadMedico[j];
                             }
-                            
-                            System.out.println("Médico: " + medNombre + " (" + medEspe + ")");
-                            System.out.println("Fecha:  " + citas[i][3]);
-                            System.out.println("Motivo: " + citas[i][4]);
-                            System.out.println("Estado: " + citas[i][5]);
-                            System.out.println("----------------");
+                        }
+                        
+                        System.out.println("Médico: " + medNombre + " (" + medEspe + ")");
+                        System.out.println("Fecha:  " + citas[i][3]);
+                        System.out.println("Motivo: " + citas[i][4]);
+                        System.out.println("Estado: " + citas[i][5]);
+                        System.out.println("----------------");
+                    }
+                }
+                
+                if (!encontroCita) {
+                    System.out.println("No tienes ninguna cita registrada.");
+                }
+                break;
+
+            case 2:
+                boolean programado = false;
+                
+                for (int i = 0; i < citas.length; i++) {
+                    if (citas[i][0].equals(codgPaciente)) {
+                        programado = true;
+                        
+                        if (citas[i][5].equals("Cancelada")) {
+                            System.out.println("No puede programar una cita que ya fue cancelada.");
+                        } else {
+                            System.out.println("Ingrese la nueva fecha (AAA/MM/DD):");
+                            String nuevaFecha = sc.nextLine();
+                            citas[i][3] = nuevaFecha; 
+                            System.out.println("¡Cita reprogramada con éxito para el día " + nuevaFecha + "!");
                         }
                     }
-                    
-                    if (encontroCita == false) {
-                        System.out.println("No tienes ninguna cita registrada.");
-                    }
-                    break;
+                }
+                
+                if (!programado) {
+                    System.out.println("No se encontró ninguna cita para modificar.");
+                }
+                break; // <-- CORREGIDO: Faltaba este break para no pasarse al case 3
 
-                case 2:
-                    boolean programado = false;
-                    
-                    for (int i = 0; i < citas.length; i++) {
-                        if (citas[i][0].equals(codgPaciente)) {
-                            programado = true;
+            case 3:
+                boolean cancelado = false;
+                
+                for (int i = 0; i < citas.length; i++) {
+                    if (citas[i][0].equals(codgPaciente)) {
+                        cancelado = true;
+                        
+                        if (citas[i][5].equals("Cancelada")) {
+                            System.out.println("Cita ya cancelada");
+                        } else {
+                            System.out.println("¿Está seguro que desea cancelar su cita?");
+                            System.out.println("(1. Si / 2. No)");
+                            System.out.println("Respuesta:");
+                            int confirmar = sc.nextInt();
+                            sc.nextLine(); // Limpiar buffer
                             
-                            if (citas[i][5].equals("Cancelada")) {
-                                System.out.println("No puede programar una cita que ya fue cancelada.");
+                            if (confirmar == 1) {
+                                citas[i][5] = "Cancelada"; 
+                                System.out.println("Su cita ha sido cancelada");
                             } else {
-                                System.out.println("Ingrese la nueva fecha (AAA/MM/DD):");
-                                String nuevaFecha = sc.nextLine();
-                                citas[i][3] = nuevaFecha; 
-                                System.out.println("¡Cita reprogramada con éxito para el día " + nuevaFecha + "!");
+                                System.out.println("Operación abortada.");
                             }
                         }
                     }
-                    
-                    if (programado == false) {
-                     
-                    }
+                }
+                
+                if (!cancelado) {
+                    System.out.println("No tienes citas para cancelar");
+                }
+                break;
 
-                    
-                case 3:
-                    boolean cancelado = false;
-                    
-                    for (int i = 0; i < citas.length; i++) {
-                        if (citas[i][0].equals(codgPaciente)) {
-                            cancelado = true;
-                            
-                            if (citas[i][5].equals("Cancelada")) {
-                                System.out.println("Cita ya cancelada");
-                            } else {
-                                System.out.println("¿Está seguro que desea cancelar su cita?");
-                                System.out.println("(1. Si / 2. No)");
-                                System.out.println("Respuesta:");
-                                int confirmar = sc.nextInt();
-                                sc.nextLine(); // Limpiar buffer
-                                
-                                if (confirmar == 1) {
-                                    citas[i][5] = "Cancelada"; // Cambia el estado directamente en la matriz
-                                    System.out.println("Su cita ha sido cancelada");
-                                } else {
-                                    System.out.println("Operación abortada.");
-                                }
-                            }
-                        }
-                    }
-                    
-                    if (cancelado == false) {
-                        System.out.println("No tienes citas para cancelar");
-                    }
-                    break;
+            case 4:
+                System.out.println("Regresando al menú de paciente");
+                break;
 
-                case 4:
-                    System.out.println("Regresando al menú de paciente");
-                    break;
+            default:
+                System.out.println("Opción no válida.");
+                break;
+        }
+    } while (opcionCita != 4);
+} // Fin Funcion OpcCitasPaciente
+         
 
-                default:
-                    System.out.println("Opción no válida.");
-                    break;
-            }
-        } while (opcionCita != 4);
-    }
-    } // FIN FUNCION OpcCitasPaciente
-    
-    
+   
 
     //FUNCIONES SWITCH SUBMENU MEDICO
      
@@ -476,5 +476,7 @@ public class ProyectoPrograG8 {
         }// fin switch
 
     }// FIN FUNCION AtenderConsulta
+    
+}// Fin de Class
 
     
