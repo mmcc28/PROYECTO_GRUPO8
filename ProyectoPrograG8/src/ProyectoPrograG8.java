@@ -59,9 +59,9 @@ public class ProyectoPrograG8 {
             System.out.println("--------------------------------");
             System.out.println("FAVOR SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
             System.out.println("1. Ingresar como Paciente");
-            System.out.println("2. Ingresar como Médico");
+            System.out.println("2. Ingresar como Medico");
             System.out.println("3. Salir");
-            System.out.print("Opción: ");
+            System.out.print("Opcion: ");
             menuPrincipal = sc.nextInt();
             sc.nextLine(); //LIMPIEZA BUFFER
 
