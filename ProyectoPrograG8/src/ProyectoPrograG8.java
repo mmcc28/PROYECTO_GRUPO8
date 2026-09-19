@@ -356,7 +356,7 @@ public class ProyectoPrograG8 {
         System.out.printf("Codigo Paciente:%s\n", codigoPaciente.toUpperCase());
         System.out.printf("Nombre Paciente:%s\n", nombrePaciente.toUpperCase());
         System.out.printf("Enfermedades Base Paciente:%s\n", enfermedadesBase.toUpperCase());
-        System.out.printf("Peso (KG) Paciente:%s\n", peso);
+        System.out.printf("Peso (KG) Paciente:%.2f\n", peso);
         System.out.printf("Paciente Alergico(a):%s\n", alergias.toUpperCase());
 
     }// Fin Funcion RegistrarInformacionPersonalyFamiliares
