@@ -403,14 +403,14 @@ public class ProyectoPrograG8 {
       System.out.println("NOTIFICACIONES Y ALERTAS");
       System.out.println("------------------------ ");
       
-      for (int i=0; i<citas.length;i++){ 
-          if(citas[i][0].equals(CodigoPaciente)&& citas[i][5].equalsIgnoreCase("PROGRAMADA")){ // Ignorando si el usuario escribe en mayuscula o minuscula
-              System.out.printf("Tiene Una Cita El dia:%s\n",citas[i][3], citas[i][4]);
-              
-              citasPendientes=true;
-               
+      for (int i = 0; i < citas.length; i++) {
+          if (citas[i][0].equals(CodigoPaciente) && citas[i][5].equalsIgnoreCase("PROGRAMADA")) { // Ignorando si el usuario escribe en mayuscula o minuscula
+              System.out.printf("Tiene Una Cita El dia: %s - Motivo: %s\n", citas[i][3], citas[i][4]);
+
+              citasPendientes = true;
+
           }// fIN IF 
-         
+
       }// Fin For
         if (!citasPendientes){
                System.out.printf("%sNO TIENE CITAS PENDIENTES PARA ESTE DIA!!%s","\u001B[31m","\u001B[0m");   
@@ -582,7 +582,9 @@ public class ProyectoPrograG8 {
 
         System.out.println("--------------------------");
         System.out.println("  DIAGNOSTICO REGISTRADO  ");
-        System.out.printf("Nombre Paciente: %s\n Diagnostico: %s\n Observaciones: %s\n", nombrePaciente, diagnosticoPaciente, observacionesPaciente);
+        System.out.printf("Nombre: %s\n", nombrePaciente);
+        System.out.printf("Diagnostico: %s\n", diagnosticoPaciente);
+        System.out.printf("Observaciones: %s\n", observacionesPaciente);
         System.out.println("--------------------------");
 
     }// FIN FUNCION RegistrarDiagnostico
@@ -607,15 +609,20 @@ public class ProyectoPrograG8 {
         if (diasIncapacidad <= 0) {
             System.out.println("ERROR: DIAS NO VALIDOS");
         } else if (diasIncapacidad <= 3) {
-            System.out.println("INCAPACIDAD REGISTRADA");
-            
-            System.out.println("");
+            System.out.println("INCAPACIDAD CORTA REGISTRADA");
             System.out.println("-------------------------------");
             System.out.printf("Paciente: %s\n", nombrePaciente);
             System.out.printf("Dias: %d\n", diasIncapacidad);
             System.out.printf("Motivo: %s\n", motivoIncapacidad);
             System.out.println("------------------------------");
-
+        } else {
+            System.out.println("INCAPACIDAD PROLONGADA");
+            System.out.println("REFERIR AL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL");
+            System.out.println("-------------------------------");
+            System.out.printf("Paciente: %s\n", nombrePaciente);
+            System.out.printf("Dias: %d\n", diasIncapacidad);
+            System.out.printf("Motivo: %s\n", motivoIncapacidad);
+            System.out.println("------------------------------");
         }// FIN IF
 
     }// FIN FUNCION GestionarIncapacidades
