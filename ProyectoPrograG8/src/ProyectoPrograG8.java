@@ -46,7 +46,13 @@ public class ProyectoPrograG8 {
         {"P0010", "Lucia Torres", "25/07/2026", "Resonancia", "Sin anomalias"}
     };
 
-     
+    
+    // COLORES ANSI
+    static String VERDE = "\u001B[32m";
+    static String ROJO = "\u001B[31m";
+    static String AMARILLO = "\u001B[33m";
+    static String MORADO = "\u001B[35m";
+    static String RESET = "\u001B[0m";
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -55,7 +61,7 @@ public class ProyectoPrograG8 {
         do {
             //MENSAJE BIENVENIDA 
             System.out.println("--------------------------------");
-            System.out.println("BIENVENVIDOS A CLINICAS MEDICAS ");
+            System.out.printf("%sBIENVENVIDOS A CLINICAS MEDICAS%s\n", MORADO, RESET);
             System.out.println("--------------------------------");
             System.out.println("FAVOR SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
             System.out.println("1. Ingresar como Paciente");
