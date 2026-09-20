@@ -29,8 +29,19 @@ import java.util.Scanner;
  * historial clínico, y los médicos dependen de procesos manuales para
  * organizar su agenda.
  *
- * Objetivo: Desarrollar un programa en Java que facilite al paciente y
- * al médico optimizar los procesos de servicio de salud.
+ * Objetivo: Desarrollar un programa en Java que facilite al paciente y al médico optimizar los procesos de servicio de salud.
+ * PACIENTE -> 1. Gestionar citas (visualizar,modificar y cancelar)
+ *             2. Consultar historial medico
+ *             3. Registar informacion personal de salud (alergias, peso)
+ *             4. Administrar perfiles de familiares y recibir 
+ *             5. Recibir Notificaciones de citas   
+ *             6. Consulta por llamada o mensaje 
+ *
+ * MEDICO -> 1. Visualizar citas asignadas
+ *           2. Consultar historial clinico de sus pacientes
+ *           3. Registrar diagnostico   
+ *           4. Gestionar incapacidades
+ *           5. Atender consultas por llamada o mensaje
 */
 public class ProyectoPrograG8 {
 
