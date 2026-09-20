@@ -127,7 +127,7 @@ public class ProyectoPrograG8 {
                     break;
 
                 default:
-                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s",ROJO,RESET);
+                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s\n",ROJO,RESET);
                     break;
             } // FIN SWITCH MENU PRINCIPAL
 
@@ -220,7 +220,7 @@ public class ProyectoPrograG8 {
                     System.out.println("Saliendo al menú principal...");
                     break;
                 default:
-                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s", ROJO, RESET);
+                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s\n", ROJO, RESET);
                     break;
             } // FIN SWITCH  
         } while (submenuPaciente != 7);
@@ -266,12 +266,12 @@ public class ProyectoPrograG8 {
                             System.out.printf("Fecha: %s\n", citas[i][3]);
                             System.out.printf("Motivo: %s\n", citas[i][4]);
                             System.out.printf("Estado: %s\n ", citas[i][5]);
-                            System.out.println("----------------");
+                          
                         }// Fin if (Citas)
                     }// Fin for (Citas)
 
                     if (!encontroCita) {
-                        System.out.printf("%s No tiene Cita Registrada %s", ROJO, RESET);
+                        System.out.printf("%s No tiene Cita Registrada %s\n", ROJO, RESET);
                     }// Fin if (encontroCita)
                     break;
 
@@ -353,7 +353,7 @@ public class ProyectoPrograG8 {
                     break;
 
                 default:
-                    System.out.printf("%sOpción no valida%s", ROJO, RESET);
+                    System.out.printf("%sOpción no valida%s\n", ROJO, RESET);
                     break;
             }// Fin switch #2
         } while (opcionCita != 4);
@@ -482,7 +482,7 @@ public class ProyectoPrograG8 {
 
         }// Fin For
         if (!citasPendientes) {
-            System.out.printf("%sNO TIENE CITAS PENDIENTES PARA ESTE DIA!!%s",ROJO,RESET);
+            System.out.printf("%sNO TIENE CITAS PENDIENTES PARA ESTE DIA!!%s\n",ROJO,RESET);
         }// Fin if   
 
     }// Fin Funcion Notificaciones
@@ -577,7 +577,7 @@ public class ProyectoPrograG8 {
                     break;
 
                 default:
-                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s",ROJO,RESET);
+                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s\n",ROJO,RESET);
                     break;
             }// FIN SWITCH  
         } while (submenuMedico != 6);
