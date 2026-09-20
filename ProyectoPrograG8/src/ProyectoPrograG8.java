@@ -277,7 +277,7 @@ public class ProyectoPrograG8 {
 
                 case 2:
                     boolean programado = false;
-                    DateTimeFormatter formateador = DateTimeFormatter.ofPattern("DD/MM/AAAA");
+                    DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
                     for (int i = 0; i < citas.length; i++) {
                         if (citas[i][0].equals(codigoPaciente)) {
@@ -289,7 +289,7 @@ public class ProyectoPrograG8 {
                                 LocalDate fechaValidada = null; // Nueva Funcion 
 
                                 while (fechaValidada == null) {
-                                    System.out.println("Ingrese la nueva fecha (DD/MM/AAAA):");
+                                    System.out.println("Ingrese la nueva fecha (dd/MM/yyyy):");
                                     String entradaFecha = sc.nextLine();
 
                                     try {
