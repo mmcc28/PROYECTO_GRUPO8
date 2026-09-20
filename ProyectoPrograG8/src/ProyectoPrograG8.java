@@ -277,7 +277,7 @@ public class ProyectoPrograG8 {
 
                 case 2:
                     boolean programado = false;
-                    DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    DateTimeFormatter formateador = DateTimeFormatter.ofPattern("DD/MM/AAAA");
 
                     for (int i = 0; i < citas.length; i++) {
                         if (citas[i][0].equals(codigoPaciente)) {
@@ -327,7 +327,7 @@ public class ProyectoPrograG8 {
                             if (citas[i][5].equals("Cancelada")) {
                                 System.out.println("Cita ya cancelada");
                             } else {
-                                System.out.println("Está seguro que desea cancelar su cita?");
+                                System.out.println("Esta seguro que desea cancelar su cita?");
                                 System.out.println("(Coloque un 1. si es Si / un 2. si es No)");
                                 System.out.println("Respuesta:");
                                 int confirmar = sc.nextInt();
@@ -335,16 +335,16 @@ public class ProyectoPrograG8 {
 
                                 if (confirmar == 1) {
                                     citas[i][5] = "Cancelada";
-                                    System.out.printf(" %s Su cita ha sido cancelada %s \n", VERDE, RESET);
+                                    System.out.printf(" %s SU CITA HA SIDO CANCELADA CON EXITO!! %s \n", VERDE, RESET);
                                 } else {
-                                    System.out.println("Operación abortada.");
+                                    System.out.println("Operación abortada");
                                 }// Fin Else Operacion abortada
                             }// Fin else cancelar cita
                         }// fin if Citas
                     }// Fin For
 
                     if (!cancelado) {
-                        System.out.println("No tienes citas para cancelar");
+                        System.out.printf("%sNo tienes citas para cancelar%s",AMARILLO,RESET);
                     }// Fin if cancelado
                     break;
 
