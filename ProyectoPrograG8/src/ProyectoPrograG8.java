@@ -287,8 +287,8 @@ public class ProyectoPrograG8 {
                             if (citas[i][5].equals("Cancelada")) {
                                 System.out.println("Cita ya cancelada");
                             } else {
-                                System.out.println("¿Está seguro que desea cancelar su cita?");
-                                System.out.println("(1. Si / 2. No)");
+                                System.out.println("Está seguro que desea cancelar su cita?");
+                                System.out.println("(Coloque un 1. si es Si / un 2. si es No)");
                                 System.out.println("Respuesta:");
                                 int confirmar = sc.nextInt();
                                 sc.nextLine(); // Limpiar buffer
