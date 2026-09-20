@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -16,6 +19,9 @@ public class ProyectoPrograG8 {
      */
 
     static String codigoPacienteActual=""; // Ayuda a que al momento de consultar solo me ejecute la informacion del usuario ingresado y no todos
+    
+    // 
+    static DateTimeFormatter validacionFecha=DateTimeFormatter.ofPattern("AAA/MM/DD");
     
     // STRING BASE DE DATOS PRECARGADA INFORMACION DE MEDICOS- arreglos unidimensionales
     static String[] nombreMedico = {"Dr. Alejandro Martinez", "Dra. Laura Hernandez", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Perez"};
@@ -48,7 +54,7 @@ public class ProyectoPrograG8 {
 
     
     // COLORES ANSI
-    static String VERDE = "\u001B[32m";
+    static String VERDE = "\u001B[32m"; // Nueva Funcion
     static String ROJO = "\u001B[31m";
     static String AMARILLO = "\u001B[33m";
     static String MORADO = "\u001B[35m";
@@ -86,7 +92,7 @@ public class ProyectoPrograG8 {
                     break;
 
                 default:
-                    System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s",ROJO,RESET);
                     break;
             } // FIN SWITCH MENU PRINCIPAL
 
@@ -112,7 +118,7 @@ public class ProyectoPrograG8 {
             //ciclo if operadores logicos && 
             if (codigo[i].equals(usuario) && password[i].equals(contrasena)) { // equals para comparar strings
                 validado = true;
-                System.out.printf("BIENVENIDO: %s\n", nombre[i]);
+                System.out.printf("%sBIENVENIDO: %s\n",MORADO, RESET, nombre[i]);
 
                 if (esMedico == true) {
                     SubmenuMedico(sc, usuario);
@@ -128,7 +134,7 @@ public class ProyectoPrograG8 {
         }// fin for
 
         if (validado == false) {
-            System.out.println("USUARIO O CONTRASENA INCORRECTOS");
+            System.out.printf("%sUSUARIO O CONTRASENA INCORRECTOS%s", ROJO,RESET);
         }// fin if
 
     }// FIN FUNCION IngresarUsuario
@@ -139,9 +145,9 @@ public class ProyectoPrograG8 {
 
         do {
             System.out.println("--------------------------------");
-            System.out.println("         MENU PACIENTE          ");
+            System.out.printf("%s         MENU PACIENTE          %s\n",MORADO,RESET);
             System.out.println("--------------------------------");
-            System.out.println("SELECCIONE UNA DE LAS SIGUIENTES OPCIONES");
+            System.out.println("SELECCIONE EL NUMERO QUE CORRESPONDE A LAS SIGUIENTES OPCIONES");
             System.out.println("1. Menu de Citas ");
             System.out.println("2. Historial Medico");
             System.out.println("3. Registrar Informacion");
@@ -168,7 +174,7 @@ public class ProyectoPrograG8 {
                     RegistroPerfilesFamiliares(sc);
                     break;
                 case 5:
-                    Notificicaciones(codigoPaciente);
+                    Notificaciones(codigoPaciente);
                     break;
                 case 6:
                     GestionarConsultas(sc);
@@ -178,7 +184,7 @@ public class ProyectoPrograG8 {
                     System.out.println("Saliendo al menú principal...");
                     break;
                 default:
-                    System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s",ROJO,RESET);
                     break;
             } // FIN SWITCH  
         } while (submenuPaciente != 7);
@@ -225,33 +231,51 @@ public class ProyectoPrograG8 {
                     }// Fin for (Citas)
 
                     if (!encontroCita) {
-                        System.out.printf("%s No tiene Cita Registrada %s", "\u001B[31m", "\u001B[0m");
+                        System.out.printf("%s No tiene Cita Registrada %s",ROJO,RESET);
                     }// Fin if (encontroCita)
                     break;
 
                 case 2:
                     boolean programado = false;
+                     DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-                    for (int i = 0; i < citas.length; i++) {
-                        if (citas[i][0].equals(codigoPaciente)) {
-                            programado = true;
+                     for (int i = 0; i < citas.length; i++) {
+                     if (citas[i][0].equals(codigoPaciente)) {
+                     programado = true;
 
-                            if (citas[i][5].equals("Cancelada")) {
-                                System.out.println("No puede programar una cita que ya fue cancelada.");
-                            }// Fin If (Citas Cancelada)
-                            else {
-                                System.out.println("Ingrese la nueva fecha (AAA/MM/DD):");
-                                String nuevaFecha = sc.nextLine();
-                                citas[i][3] = nuevaFecha;
-                                System.out.println("Cita programada con exito para el día " + nuevaFecha + "!");
-                            }// Fin else (para ingresar nueva cita)
-                        }// Fin if
-                    }// Fin For 
+                     if (citas[i][5].equals("Cancelada")) {
+                      System.out.printf("%sNo puede reprogramar una cita ya cancelada.%s\n", ROJO, RESET);
+                       } else {
+                      LocalDate fechaValidada = null; // Nueva Funcion 
 
-                    if (!programado) {
-                        System.out.printf("%s No se encontró ninguna cita para modificar %s", "\u001B[31m", "\u001B[0m");
-                    }// Fin If
-                    break;
+                      while (fechaValidada == null) {
+                      System.out.println("Ingrese la nueva fecha (DD/MM/AAAA):");
+                      String entradaFecha = sc.nextLine();
+
+                        try {
+                        LocalDate fechaIngresada = LocalDate.parse(entradaFecha, formateador);
+
+                        if (fechaIngresada.isBefore(LocalDate.now())) {
+                            System.out.printf("%sError: No puede programar en fecha pasada.%s\n", ROJO, RESET);
+                        } else {
+                            fechaValidada = fechaIngresada;
+                        }
+
+                    } catch (DateTimeParseException e) {
+                        System.out.printf("%sError: Use el formato DD/MM/AAAA (ej: 15/10/2026)%s\n", ROJO, RESET);
+                    }
+                }
+
+                    citas[i][3] = fechaValidada.format(formateador);
+                    System.out.printf("%sCita reprogramada con exito para: %s%s\n", VERDE, citas[i][3], RESET);
+            }
+        }
+    }
+
+                     if (!programado) {
+                      System.out.printf("%sNo se encontro ninguna cita para modificar.%s\n", ROJO, RESET);
+    }
+                      break;
 
                 case 3:
                     boolean cancelado = false;
@@ -289,7 +313,7 @@ public class ProyectoPrograG8 {
                     break;
 
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.printf("%sOpción no valida%s",ROJO,RESET);
                     break;
             }
         } while (opcionCita != 4);
@@ -320,7 +344,7 @@ public class ProyectoPrograG8 {
             }// Fin If
         }// Fin for
         if (!CuentaconHistorial) {
-            System.out.printf("%s Usted No Tiene Historial Medico %s", "\u001B[31m", "\u001B[0m");
+            System.out.printf("%s Usted No Tiene Historial Medico %s",ROJO,RESET);
 
         }
 
@@ -396,7 +420,7 @@ public class ProyectoPrograG8 {
 
     }// Fin FuncionRegistroPerfilesFamiliares
 
-    public static void Notificicaciones(String CodigoPaciente) {
+    public static void Notificaciones(String CodigoPaciente) {
 
         boolean citasPendientes = false;
 
@@ -414,7 +438,7 @@ public class ProyectoPrograG8 {
 
         }// Fin For
         if (!citasPendientes) {
-            System.out.printf("%sNO TIENE CITAS PENDIENTES PARA ESTE DIA!!%s", "\u001B[31m", "\u001B[0m");
+            System.out.printf("%sNO TIENE CITAS PENDIENTES PARA ESTE DIA!!%s",ROJO,RESET);
         }// Fin if   
 
     }// Fin Funcion Notificaciones
@@ -504,7 +528,7 @@ public class ProyectoPrograG8 {
                     break;
 
                 default:
-                    System.out.println("OPCION NO VALIDA, VUELVA A INTENTARLO");
+                    System.out.printf("%sOPCION NO VALIDA, VUELVA A INTENTARLO%s",ROJO,RESET);
                     break;
             }// FIN SWITCH  
         } while (submenuMedico != 6);
@@ -608,7 +632,7 @@ public class ProyectoPrograG8 {
         motivoIncapacidad = sc.nextLine();
 
         if (diasIncapacidad <= 0) {
-            System.out.println("ERROR: DIAS NO VALIDOS");
+            System.out.printf("%sERROR: DIAS NO VALIDOS%s",ROJO,RESET);
         } else if (diasIncapacidad <= 3) {
             System.out.println("INCAPACIDAD CORTA REGISTRADA");
             System.out.println("-------------------------------");
@@ -657,7 +681,7 @@ public class ProyectoPrograG8 {
                 System.out.println("CONSULTA POR MENSAJE ATENDIDA");
                 break;
             default:
-                System.out.println("OPCION NO VALIDA");
+                System.out.printf("%sOPCION NO VALIDA%s",ROJO,RESET);
         }// fin switch
 
     }// FIN FUNCION AtenderConsulta
