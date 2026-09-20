@@ -55,7 +55,7 @@ public class ProyectoPrograG8 {
     static String codigoPacienteActual=""; 
     
     // Formateador de fecha para validar el formato dd/MM/yyyy con LocalDate
-    static DateTimeFormatter validacionFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // STRING BASE DE DATOS INFORMACION DE MEDICOS- arreglos unidimensionales
     static String[] nombreMedico = {"Dr. Alejandro Martinez", "Dra. Laura Hernandez", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Perez"};
