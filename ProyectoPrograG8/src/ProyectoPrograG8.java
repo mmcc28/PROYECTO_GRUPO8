@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @author mmcc28
  */
 
-/*
+
 /*
  * SISTEMA DE GESTIÓN MÉDICA
  * Programación 1 - UNITEC Honduras - CEUTEC Teledocencia
@@ -44,8 +44,8 @@ public class ProyectoPrograG8 {
     static String codigoPacienteActual=""; 
     
     // Formateador de fecha para validar el formato dd/MM/yyyy con LocalDate
-    static DateTimeFormatter validacionFecha=DateTimeFormatter.ofPattern("AAA/MM/DD");
-    
+    static DateTimeFormatter validacionFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     // STRING BASE DE DATOS INFORMACION DE MEDICOS- arreglos unidimensionales
     static String[] nombreMedico = {"Dr. Alejandro Martinez", "Dra. Laura Hernandez", "Dr. Carlos Rojas", "Dra. Ana Soto", "Dr. Luis Perez"};
     static String[] codigoMedico = {"M001", "M002", "M003", "M004", "M005"};
@@ -448,7 +448,7 @@ public class ProyectoPrograG8 {
         System.out.println("Agregar Nombre y Apellido");
         System.out.println("");
         agregarPerfil = sc.nextLine();
-        System.out.printf("%sPERFIL FAMILIAR AGREGADO CON EXITO:%s %s \n",VERDE, agregarPerfil.toUpperCase(), RESET);
+        System.out.printf("%sPERFIL FAMILIAR AGREGADO CON EXITO:%s%s \n",VERDE, agregarPerfil.toUpperCase(), RESET);
 
     }// Fin FuncionRegistroPerfilesFamiliares
 
