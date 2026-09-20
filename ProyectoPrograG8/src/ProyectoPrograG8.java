@@ -354,14 +354,10 @@ public class ProyectoPrograG8 {
     }// FIN FUNCION VerHistorialMedico 
 
     public static void RegistrarInformacionPersonalyFamiliares(Scanner sc) {
-        String codigoPaciente = "@";
         String nombrePaciente = "@";
         double peso = 0;
         String enfermedadesBase = "@";
         String alergias = "@";
-
-        System.out.println("Ingrese Su Codigo de Usuario:");
-        codigoPaciente = sc.nextLine();
 
         System.out.println("Ingrese Su Nombre:");
         nombrePaciente = sc.nextLine();
@@ -383,7 +379,6 @@ public class ProyectoPrograG8 {
         System.out.println("-------------------------");
         System.out.println("NUEVO REGISTRO PERSONAL DE PACIENTE");
         System.out.println("-------------------------");
-        System.out.printf("Codigo Paciente:%s\n", codigoPaciente.toUpperCase());
         System.out.printf("Nombre Paciente:%s\n", nombrePaciente.toUpperCase());
         System.out.printf("Enfermedades Base Paciente:%s\n", enfermedadesBase.toUpperCase());
         System.out.printf("Peso (KG) Paciente:%.2f\n", peso);
@@ -392,16 +387,25 @@ public class ProyectoPrograG8 {
     }// Fin Funcion RegistrarInformacionPersonalyFamiliares
 
     public static void RegistroPerfilesFamiliares(Scanner sc) {
-        String codigoPaciente = "@";
-        String nombrePaciente = "@";
+        String passwordIngresada = "@";
         String agregarPerfil = "@";
         String parentezco = "@";
 
-        System.out.println("Ingrese su Codigo de Usuario:");
-        codigoPaciente = sc.nextLine();
+        System.out.println("Ingrese su Contraseña de Usuario:");
+        passwordIngresada= sc.nextLine();
+        
+        boolean acceso = false;
+        for (int i = 0; i < codigoPaciente.length; i++) {
+            if (codigoPaciente[i].equals(codigoPacienteActual) && passwordPaciente[i].equals(passwordIngresada)) {
+                acceso = true;
+                break;
+            }// Fin if 
+        }// Fin for 
 
-        System.out.println("Ingrese su Nombre:");
-        nombrePaciente = sc.nextLine();
+        if (acceso == false) {
+            System.out.printf("%sContrasena incorrecta, Vuelva a Intentar!!%s\n", ROJO, RESET);
+            return;
+        }
 
         System.out.println("Que Parentezco Tiene con el Nuevo Usuario?");
         parentezco = sc.nextLine();
@@ -471,7 +475,7 @@ public class ProyectoPrograG8 {
                 System.out.println("POR FAVOR ESPERE.....");
                 break;
             default:
-                System.out.println("OPCION NO VALIDA");
+                System.out.printf("OPCION NO VALIDA",ROJO,RESET);
         }// fin switch
     }// Fin FuncionGestionarConsultas
 
@@ -562,6 +566,7 @@ public class ProyectoPrograG8 {
     public static void MostrarHistorialMedico(String[][] arregloHistorial, Scanner sc) {
 
         String codigoPaciente = "John Doe";
+        boolean encontrado = false;
 
         System.out.println("--------------------");
         System.out.println("  HISTORIAL MEDICO  ");
@@ -573,6 +578,7 @@ public class ProyectoPrograG8 {
         for (int i = 0; i < arregloHistorial.length; i++) {
 
             if (arregloHistorial[i][0].equals(codigoPaciente)) {
+                encontrado = true;
 
                 System.out.printf("codigo Paciente: %s\n", arregloHistorial[i][0]);
                 System.out.printf("Nombre Paciente: %s\n", arregloHistorial[i][1]);
@@ -583,7 +589,9 @@ public class ProyectoPrograG8 {
 
             }// Fin if
         }// Fin For
-
+        if (encontrado == false) {
+            System.out.printf("%sPACIENTE NO ENCONTRADO O SIN HISTORIAL REGISTRADO%s\n", ROJO, RESET);
+        }// Fin if 
     }// FIN FUNCION MostrarHistorialMedico
 
     public static void RegistarDiagnostico(Scanner sc) {
