@@ -19,7 +19,7 @@ import java.util.Scanner;
  * Programación 1 - UNITEC Honduras - CEUTEC Teledocencia
  * Sección 72 - Grupo 8
  * Docente: Oscar Daniel Andrade
- * Integrantes: Mirna María Chávez Cerrato (11741191)
+ * Integrantes: Mirna María Chávez Cerrato
  *              Liana Mirella Hernández Reyes
  * Fecha: Septiembre 2026
  *
