@@ -337,7 +337,7 @@ public class ProyectoPrograG8 {
                                     citas[i][5] = "Cancelada";
                                     System.out.printf(" %s SU CITA HA SIDO CANCELADA CON EXITO!! %s \n", VERDE, RESET);
                                 } else {
-                                    System.out.println("Operación abortada");
+                                    System.out.printf("%sOPERACION ABORTADA%s\n",AMARILLO,RESET);
                                 }// Fin Else Operacion abortada
                             }// Fin else cancelar cita
                         }// fin if Citas
